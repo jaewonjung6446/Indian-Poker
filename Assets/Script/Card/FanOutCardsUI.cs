@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class FanOutCardsUI : MonoBehaviour
 {
+    public static FanOutCardsUI Instance;
     public List<RectTransform> cards = new List<RectTransform>();
-    public float angleStep = 10f;
+    public float angleStep = 5f;
     public float radius = 300f;
     public float transitionDuration = 0.5f; // 전환에 걸리는 시간
+    public Vector3 center = new Vector3(0,0,0);
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void StartArrangeCards()
     {
         StartCoroutine(ArrangeCardsCoroutine());
     }
 
-    private IEnumerator ArrangeCardsCoroutine()
+    public IEnumerator ArrangeCardsCoroutine()
     {
         float timeElapsed = 0;
 
@@ -34,7 +40,7 @@ public class FanOutCardsUI : MonoBehaviour
                 float angle = angleStep * i - (angleStep * (cards.Count - 1) / 2);
                 float angleRad = angle * Mathf.Deg2Rad;
 
-                Vector3 targetPosition = new Vector3(Mathf.Sin(angleRad) * radius, Mathf.Cos(angleRad) * radius, 0);
+                Vector3 targetPosition = new Vector3(Mathf.Sin(angleRad) * radius, Mathf.Cos(angleRad) * radius, 0)+ center;
                 Quaternion targetRotation = Quaternion.Euler(0, 0, -angle);
 
                 cards[i].localPosition = Vector3.Lerp(startPositions[i], targetPosition, timeElapsed / transitionDuration);
@@ -50,7 +56,7 @@ public class FanOutCardsUI : MonoBehaviour
         {
             float angle = angleStep * i - (angleStep * (cards.Count - 1) / 2);
             float angleRad = angle * Mathf.Deg2Rad;
-            cards[i].localPosition = new Vector3(Mathf.Sin(angleRad) * radius, Mathf.Cos(angleRad) * radius, 0);
+            cards[i].localPosition = new Vector3(Mathf.Sin(angleRad) * radius, Mathf.Cos(angleRad) * radius, 0)+ center;
             cards[i].localRotation = Quaternion.Euler(0, 0, -angle);
         }
     }

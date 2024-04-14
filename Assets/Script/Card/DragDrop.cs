@@ -9,18 +9,16 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private Vector3 originalPosition;
     private bool isReturning = false;  // 카드가 원래 위치로 돌아가는지 여부
     public float returnSpeed = 0.1f;  // 복귀 속도
-    FanOutCardsUI fanOutScript;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();
-        fanOutScript = GetComponentInParent<FanOutCardsUI>();
     }
     private void Start()
     {
-        fanOutScript.StartArrangeCards(); // 카드 배열 업데이트
+        FanOutCardsUI.Instance.StartArrangeCards(); // 카드 배열 업데이트
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -45,13 +43,30 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("End Dragging");
-        isReturning = true;  // 드래그가 끝나면 원래 위치로 복귀 시작 // 부모 오브젝트에서 FanOutCardsUI 스크립트 찾기
-        if (fanOutScript != null)
+        if (rectTransform.anchoredPosition.y >= 300)
         {
-            fanOutScript.StartArrangeCards(); // 카드 배열 업데이트
+            RemoveAndDestroyCard(); // Y 좌표가 300 이상이면 카드 파괴
+        }
+        else
+        {
+            isReturning = true;  // 그 외 경우, 원래 위치로 복귀
+        }// 드래그가 끝나면 원래 위치로 복귀 시작 // 부모 오브젝트에서 FanOutCardsUI 스크립트 찾기
+        if (FanOutCardsUI.Instance != null)
+        {
+            FanOutCardsUI.Instance.StartArrangeCards(); // 카드 배열 업데이트
         }
     }
-
+    private void RemoveAndDestroyCard()
+    {
+        if (FanOutCardsUI.Instance != null)
+        {
+            // 리스트에서 카드 제거
+            FanOutCardsUI.Instance.cards.Remove(rectTransform);
+            // 카드 배열 재조정
+            FanOutCardsUI.Instance.StartArrangeCards();
+        }
+        Destroy(gameObject); // 게임 오브젝트 파괴
+    }
     private void Update()
     {
         if (isReturning)

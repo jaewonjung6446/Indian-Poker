@@ -43,7 +43,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("End Dragging");
-        if (rectTransform.anchoredPosition.y >= 300)
+        if (rectTransform.anchoredPosition.y >= 200)
         {
             RemoveAndDestroyCard(); // Y 좌표가 300 이상이면 카드 파괴
         }

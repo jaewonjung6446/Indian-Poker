@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class NumberAssignment : MonoBehaviour
 {
     public Button assignButton;  // 숫자 배정 버튼
+    public Text EnemyNum;
     public int allyexistingNumber;  // 이미 배정받은 숫자
     public int enemyexistingNumber;
     int allynewNumber=-1;
@@ -37,6 +38,7 @@ public class NumberAssignment : MonoBehaviour
                 enemyavailableNumbers.Add(i);
             }
         }
+        EnemyNum.text = "";
     }
 
     void AssignNewNumber()
@@ -46,6 +48,7 @@ public class NumberAssignment : MonoBehaviour
             int allyindex = Random.Range(0, allyavailableNumbers.Count);
             allynewNumber = allyavailableNumbers[allyindex];
             allyavailableNumbers.RemoveAt(allyindex);  // 뽑힌 숫자 제거
+            EnemyNum.text = allynewNumber.ToString();
             Debug.Log($"아군 새로운 숫자: {allynewNumber}");
         }else
         {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class FanOutCardsUI : MonoBehaviour
 {
     public static FanOutCardsUI Instance;
+    [SerializeField] int startCardStack = 3;
     public List<RectTransform> cards = new List<RectTransform>();
     public float angleStep = 5f;
     public float radius = 300f;
@@ -14,6 +15,15 @@ public class FanOutCardsUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+    private void Start()
+    {
+        for (int i = 0; i < startCardStack; i++) {
+            int a = Random.Range(0, CardManager.cardManager.cardPrefabs.Length);
+            GameObject gameObject = GameObject.Instantiate(CardManager.cardManager.cardPrefabs[a],transform);
+            cards.Add(gameObject.GetComponent<RectTransform>());
+        }
+        StartArrangeCards();
     }
     public void StartArrangeCards()
     {

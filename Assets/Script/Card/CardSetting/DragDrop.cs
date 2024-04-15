@@ -61,7 +61,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         if (FanOutCardsUI.Instance != null)
         {
             // 리스트에서 카드 제거
-            FanOutCardsUI.Instance.cards.Remove(rectTransform);
+            FanOutCardsUI.Instance.cards.Remove(gameObject.GetComponent<RectTransform>());
             // 카드 배열 재조정
             FanOutCardsUI.Instance.StartArrangeCards();
         }

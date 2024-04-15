@@ -65,6 +65,9 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
             // 카드 배열 재조정
             FanOutCardsUI.Instance.StartArrangeCards();
         }
+        Debug.Log(this.gameObject.name);
+        CardData data = CardManager.cardManager.GetCardData(this.gameObject.name);
+        data.Effect();
         Destroy(gameObject); // 게임 오브젝트 파괴
     }
     private void Update()

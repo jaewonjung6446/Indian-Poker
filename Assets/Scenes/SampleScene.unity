@@ -746,6 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71a044420086be4caecd61f6ef96cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startCardStack: 3
   cards: []
   angleStep: 10
   radius: 1000
@@ -1165,7 +1166,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1312137185
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1203,6 +1204,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a08f8ab253669a4ab4a06be8e54c381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startchip_player: 30
+  startchip_enemy: 30
   betamount: {fileID: 1440061902}
   playeramount: {fileID: 726785012}
 --- !u!4 &1398349879
@@ -1673,6 +1676,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1632897623}
   m_CullTransparentMesh: 1
+--- !u!1 &1687293567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687293568}
+  - component: {fileID: 1687293569}
+  m_Layer: 0
+  m_Name: EnemyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1687293568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687293567}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 959.69037, y: 345.0685, z: 2.2068024}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1687293569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687293567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aaacf91bba3b7d40a504622322925af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1886298953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2078,3 +2125,4 @@ SceneRoots:
   - {fileID: 1588858681}
   - {fileID: 1398349879}
   - {fileID: 1886298955}
+  - {fileID: 1687293568}

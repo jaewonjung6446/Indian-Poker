@@ -31,7 +31,7 @@ public class NumberAssignment : MonoBehaviour
                 allyavailableNumbers.Add(i);
             }
         }
-        for (int i = 1; i <= 10; i++)
+        for (int i = EnemyManager.instance.enemies[0].minNum; i <= EnemyManager.instance.enemies[0].maxNum; i++)
         {
             if (i != enemyexistingNumber)  // 기존 숫자 제외
             {

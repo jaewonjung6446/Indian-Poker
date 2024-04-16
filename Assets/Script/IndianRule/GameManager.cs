@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] int startchip_player = 30;
+    [SerializeField] int startchip_enemy = 30;
+
     private List<Player> players = new List<Player>();
     private int currentPot = 0; // 현재 팟의 총액
     public Text betamount;
@@ -13,8 +16,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // 플레이어 초기화 예시
-        players.Add(new Player("플레이어", 0));
-        players.Add(new Player("적군", 0));
+        players.Add(new Player("플레이어", startchip_player));
+        players.Add(new Player("적군", startchip_enemy));
     }
 
     // 플레이어의 배팅을 처리하는 메소드

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4933122911111519411}
   - component: {fileID: 9201067027658477764}
   m_Layer: 5
-  m_Name: Spc1
+  m_Name: Spc001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,6 +91,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnSpeed: 0.1
+  zoomScaleFactor: 1.5
+  zoomSpeed: 0.05
 --- !u!225 &4933122911111519411
 CanvasGroup:
   m_ObjectHideFlags: 0

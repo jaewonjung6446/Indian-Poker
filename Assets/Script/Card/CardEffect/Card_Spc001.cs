@@ -8,7 +8,7 @@ public class Card_Spc001 : MonoBehaviour, CardData
     public int cost { get; set; } = 1;
     public void Effect()
     {
-        GameManager.gameManager.currentPot = GameManager.gameManager.currentPot =3;
-        Debug.Log("특수, 현재 팟: " + GameManager.gameManager.currentPot);
+        GameManager.gameManager.bet = 3;
+        Debug.Log("특수, 현재 배팅 가능 액: " + GameManager.gameManager.bet);
     }
 }

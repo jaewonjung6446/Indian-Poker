@@ -11,8 +11,10 @@ public class GameManager : MonoBehaviour
 
     private List<Player> players = new List<Player>();
     public int currentPot = 0; // 현재 팟의 총액
+    public int bet = 10; // 배팅액
     public Text betamount;
     public Text playeramount;
+    public Text betavailableamount;
 
     private void Awake()
     {
@@ -23,28 +25,36 @@ public class GameManager : MonoBehaviour
         // 플레이어 초기화 예시
         players.Add(new Player("플레이어", startchip_player));
         players.Add(new Player("적군", startchip_enemy));
+        betamount.text = "전체 배팅 액:" + currentPot.ToString();
+        playeramount.text = "플레이어 재화:" + players[0].chips.ToString();
     }
-
+    private void Update()
+    {
+        betavailableamount.text = "배팅 액 :" + bet.ToString();
+    }
     // 플레이어의 배팅을 처리하는 메소드
     public void Call(int playerId)
     {
         Player player = players[playerId];
-        int highestBet = GetHighestBet();
-        int betDifference = highestBet - player.currentBet;
 
-        if (player.PlaceBet(betDifference))
+        if (player.PlaceBet(currentPot - player.currentBet))
         {
-            UpdatePot(betDifference);
+            UpdatePot(currentPot - player.currentBet);
         }
     }
 
     public void Raise(int playerId)
     {
         Player player = players[playerId];
-        if (player.PlaceBet(GetHighestBet() - player.currentBet + 10))
+        /*if (player.PlaceBet(GetHighestBet() - player.currentBet + 10))
         {
             UpdatePot(GetHighestBet() - player.currentBet + 10);
+        }*/
+        if(player.PlaceBet(bet))
+        {
+            UpdatePot(bet);
         }
+
     }
 
     public void Fold(int playerId)
@@ -62,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // 현재 가장 높은 배팅을 반환하는 메소드
+/*    // 현재 가장 높은 배팅을 반환하는 메소드
     private int GetHighestBet()
     {
         int highestBet = 0;
@@ -75,4 +85,5 @@ public class GameManager : MonoBehaviour
         }
         return highestBet;
     }
+*/
 }

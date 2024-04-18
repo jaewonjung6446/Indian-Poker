@@ -12,7 +12,7 @@ public class Player
     {
         playerName = name;
         chips = startingChips;
-        currentBet = 0;
+        currentBet = 5;
     }
 
     // 배팅을 추가하는 메소드
@@ -26,7 +26,6 @@ public class Player
         else
         {
             chips -= amount;
-            currentBet += amount;
             Debug.Log(playerName + " bets " + amount);
             return true;
         }

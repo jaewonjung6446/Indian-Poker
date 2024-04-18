@@ -5,14 +5,19 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager gameManager;
     [SerializeField] int startchip_player = 30;
     [SerializeField] int startchip_enemy = 30;
 
     private List<Player> players = new List<Player>();
-    private int currentPot = 0; // 현재 팟의 총액
+    public int currentPot = 0; // 현재 팟의 총액
     public Text betamount;
     public Text playeramount;
 
+    private void Awake()
+    {
+        gameManager = this;
+    }
     void Start()
     {
         // 플레이어 초기화 예시
@@ -48,7 +53,7 @@ public class GameManager : MonoBehaviour
     }
 
     // 현재 팟을 업데이트하는 메소드
-    private void UpdatePot(int amount)
+    public void UpdatePot(int amount)
     {
         currentPot += amount;
         Debug.Log("Current pot: " + currentPot);

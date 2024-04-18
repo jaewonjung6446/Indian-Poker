@@ -63,7 +63,9 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     {
         Debug.Log("End Dragging");
         isReturning = true;
+        //Debug.Log(this.name.Replace("(Clone)", ""));
         CardData a = CardManager.cardManager.GetCardData(this.name);
+        Debug.Log(a.cost);
         a.Effect();
         FanOutCardsUI.Instance.cards.Remove(this.rectTransform);
         this.gameObject.SetActive(false);

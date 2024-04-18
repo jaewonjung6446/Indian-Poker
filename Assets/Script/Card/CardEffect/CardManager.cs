@@ -15,6 +15,7 @@ public class CardManager : MonoBehaviour
         foreach (GameObject card in cardPrefabs){
             CardData cardData = card.GetComponent<CardData>();
             if(cardData != null && cardData.ID + "(Clone)" == ID) {
+                Debug.Log("카드데이터 출력");
                 return cardData;
             }
         }

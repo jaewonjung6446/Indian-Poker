@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Card_Dfd001 : MonoBehaviour, CardData
 {
-    public string ID { get; set; } = "Dfd1";
+    public string ID { get; set; } = "Dfd001";
     public int cost { get; set; } = 1;
     public void Effect()
     {
-        Debug.Log("2번 방어 타입 발동");
+        GameManager.gameManager.currentPot = GameManager.gameManager.currentPot / 2;
+        Debug.Log("방어, 현재 팟: " + GameManager.gameManager.currentPot);
     }
 }

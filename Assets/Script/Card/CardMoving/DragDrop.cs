@@ -15,6 +15,8 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public float zoomScaleFactor = 1.5f;  // 확대 배율
     public float zoomSpeed = 0.05f;       // 확대 속도
     private int originalSortingOrder;     // 원래 sorting order 저장
+    public GameObject uiPanel;
+    GameObject parent;
 
     private void Awake()
     {
@@ -24,6 +26,10 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         originalScale = rectTransform.localScale;  // 원래 스케일 저장
         targetScale = originalScale;  // 초기 목표 스케일 설정
         originalSortingOrder = canvas.sortingOrder; // 원래 sorting order 저장
+        parent = GameObject.Find("Description");
+        uiPanel = Instantiate(UICon.instance.CardDescription, parent.transform);
+        //uiPanel.transform.position = parent.GetComponent<RectTransform>().anchoredPosition;
+        uiPanel.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -31,6 +37,8 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         targetScale = originalScale * zoomScaleFactor;  // 목표 스케일 설정
         canvas.sortingOrder = 100;  // 확대된 카드를 가장 앞으로
         isZooming = true;  // 확대 시작
+        uiPanel.SetActive(true);
+        uiPanel.transform.position = parent.GetComponent<RectTransform>().position;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -38,6 +46,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         targetScale = originalScale;  // 원래 스케일로 목표 설정
         canvas.sortingOrder = originalSortingOrder; // sorting order를 원래대로 복귀
         isZooming = true;  // 축소 시작
+        uiPanel.SetActive(false);
     }
 
     public void OnPointerDown(PointerEventData eventData)

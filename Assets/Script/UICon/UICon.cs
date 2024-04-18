@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class UICon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static UICon instance;
+    public GameObject CardDescription;
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        instance = this;
     }
 }

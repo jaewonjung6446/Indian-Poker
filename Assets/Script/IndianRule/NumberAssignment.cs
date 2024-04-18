@@ -7,23 +7,38 @@ public class NumberAssignment : MonoBehaviour
 {
     public Button assignButton;  // 숫자 배정 버튼
     public Text EnemyNum;
+    //public Text AllyNum;
     public int allyexistingNumber;  // 이미 배정받은 숫자
     public int enemyexistingNumber;
     int allynewNumber=-1;
     int enemynewNumber=-1;
+    private int stage= 0;
     private List<int> allyavailableNumbers;  // 사용 가능한 숫자 리스트
     private List<int> enemyavailableNumbers;  // 사용 가능한 숫자 리스트
 
     void Start()
     {
-        InitializeNumbers();
+        IntiallizeNum_Ally();
+        InitializeNumbers(0);
+        AssignNewNumber();
         assignButton.onClick.AddListener(AssignNewNumber);
     }
 
-    void InitializeNumbers()
+    void InitializeNumbers(int stage)
+    {
+        enemyavailableNumbers = new List<int>();
+
+        for (int i = EnemyManager.instance.enemies[stage].minNum; i <= EnemyManager.instance.enemies[stage].maxNum; i++)
+        {
+            if (i != enemyexistingNumber)  // 기존 숫자 제외
+            {
+                enemyavailableNumbers.Add(i);
+            }
+        }
+    }
+    void IntiallizeNum_Ally()
     {
         allyavailableNumbers = new List<int>();
-        enemyavailableNumbers = new List<int>();
         for (int i = 1; i <= 10; i++)
         {
             if (i != allyexistingNumber)  // 기존 숫자 제외
@@ -31,34 +46,31 @@ public class NumberAssignment : MonoBehaviour
                 allyavailableNumbers.Add(i);
             }
         }
-        for (int i = EnemyManager.instance.enemies[0].minNum; i <= EnemyManager.instance.enemies[0].maxNum; i++)
-        {
-            if (i != enemyexistingNumber)  // 기존 숫자 제외
-            {
-                enemyavailableNumbers.Add(i);
-            }
-        }
-        EnemyNum.text = "";
     }
 
     void AssignNewNumber()
     {
+        stage++;
+        Debug.Log($"현재 스테이지 = {stage}");
+        InitializeNumbers(stage);
         if (allyavailableNumbers.Count > 0)
         {
             int allyindex = Random.Range(0, allyavailableNumbers.Count);
             allynewNumber = allyavailableNumbers[allyindex];
             allyavailableNumbers.RemoveAt(allyindex);  // 뽑힌 숫자 제거
-            EnemyNum.text = allynewNumber.ToString();
+            //AllyNum.text = allynewNumber.ToString();
             Debug.Log($"아군 새로운 숫자: {allynewNumber}");
         }else
         {
-            Debug.Log("아군에 더 이상 사용 가능한 숫자가 없습니다.");
+            Debug.Log("아군에 더 이상 사용 가능한 숫자가 없습니다. 카드를 재배치합니다");
+            IntiallizeNum_Ally();
         }
         if (enemyavailableNumbers.Count > 0)
         {
             int enemyindex = Random.Range(0, enemyavailableNumbers.Count);
             enemynewNumber = enemyavailableNumbers[enemyindex];
             enemyavailableNumbers.RemoveAt(enemyindex);  // 뽑힌 숫자 제거
+            EnemyNum.text = enemynewNumber.ToString();
             Debug.Log($"적군 새로운 숫자: {enemynewNumber}");
         } else
         {

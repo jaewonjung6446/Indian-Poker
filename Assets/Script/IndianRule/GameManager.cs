@@ -37,19 +37,15 @@ public class GameManager : MonoBehaviour
     {
         Player player = players[playerId];
 
-        if (player.PlaceBet(currentPot - player.currentBet))
+        if (player.PlaceBet(currentPot - bet))
         {
-            UpdatePot(currentPot - player.currentBet);
+            UpdatePot(currentPot - bet);
         }
     }
 
     public void Raise(int playerId)
     {
         Player player = players[playerId];
-        /*if (player.PlaceBet(GetHighestBet() - player.currentBet + 10))
-        {
-            UpdatePot(GetHighestBet() - player.currentBet + 10);
-        }*/
         if(player.PlaceBet(bet))
         {
             UpdatePot(bet);
@@ -60,6 +56,7 @@ public class GameManager : MonoBehaviour
     public void Fold(int playerId)
     {
         players[playerId].Fold();
+        playeramount.text = "플레이어 재화:" + players[0].chips.ToString();
     }
 
     // 현재 팟을 업데이트하는 메소드

@@ -6,13 +6,11 @@ public class Player
 {
     public string playerName;
     public int chips; // 플레이어의 칩 개수
-    public int currentBet; // 현재 라운드에서 플레이어가 건 배팅
 
     public Player(string name, int startingChips)
     {
         playerName = name;
         chips = startingChips;
-        currentBet = 5;
     }
 
     // 배팅을 추가하는 메소드
@@ -35,6 +33,8 @@ public class Player
     public void Fold()
     {
         Debug.Log(playerName + " folds");
-        currentBet = 0;
+        //this.chips -= GameManager.gameManager.bet;
+        GameManager.gameManager.bet = chips;
+        GameManager.gameManager.currentPot = 0;
     }
 }

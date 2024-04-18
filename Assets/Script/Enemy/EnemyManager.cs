@@ -29,11 +29,8 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
-    void Start()
-    {
         // 적 10명 생성 예시
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 100; i++)
         {
             AddEnemy();
         }

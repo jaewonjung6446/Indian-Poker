@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         players.Add(new Player("플레이어", startchip_player));
         players.Add(new Player("적군", startchip_enemy));
         betamount.text = "전체 배팅 액:" + currentPot.ToString();
-        playeramount.text = "플레이어 재화:" + players[0].chips.ToString();
+        playeramount.text = "플레이어 재화:" + players[0].Hp.ToString();
     }
     private void Update()
     {
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     public void Fold(int playerId)
     {
         players[playerId].Fold();
-        playeramount.text = "플레이어 재화:" + players[0].chips.ToString();
+        playeramount.text = "플레이어 재화:" + players[0].Hp.ToString();
     }
 
     // 현재 팟을 업데이트하는 메소드
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         currentPot += amount;
         Debug.Log("Current pot: " + currentPot);
         betamount.text = "전체 배팅 액:"+currentPot.ToString();
-        playeramount.text = "플레이어 재화:"+players[0].chips.ToString();
+        playeramount.text = "플레이어 재화:"+players[0].Hp.ToString();
 
     }
 

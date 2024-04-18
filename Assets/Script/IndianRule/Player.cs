@@ -5,36 +5,36 @@ using UnityEngine;
 public class Player
 {
     public string playerName;
-    public int chips; // 플레이어의 칩 개수
+    public int Hp; // 플레이어의 Hp
 
-    public Player(string name, int startingChips)
+    public Player(string name, int startingHp)
     {
         playerName = name;
-        chips = startingChips;
+        Hp = startingHp;
     }
 
     // 배팅을 추가하는 메소드
     public bool PlaceBet(int amount)
     {
-        if (amount > chips)
+        if (amount > Hp)
         {
             Debug.Log("Not enough chips!");
             return false;
         }
         else
         {
-            chips -= amount;
+            Hp -= amount;
             Debug.Log(playerName + " bets " + amount);
             return true;
         }
     }
 
-    // 배팅을 취소하고 칩을 돌려받는 메소드
+    // 배팅을 취소하는 메소드, 칩은 돌려 받지 못함
     public void Fold()
     {
         Debug.Log(playerName + " folds");
         //this.chips -= GameManager.gameManager.bet;
-        GameManager.gameManager.bet = chips;
+        GameManager.gameManager.bet = Hp;
         GameManager.gameManager.currentPot = 0;
     }
 }

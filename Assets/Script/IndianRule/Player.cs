@@ -34,7 +34,7 @@ public class Player
     {
         Debug.Log(playerName + " folds");
         //this.chips -= GameManager.gameManager.bet;
-        GameManager.gameManager.bet = Hp;
+        GameManager.gameManager.bet = 10;
         GameManager.gameManager.currentPot = 0;
     }
 }

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public Text betamount;
     public Text playeramount;
     public Text betavailableamount;
+    public int currentCost = 3;
 
     private void Awake()
     {

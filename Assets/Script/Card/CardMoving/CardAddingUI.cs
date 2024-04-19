@@ -26,5 +26,7 @@ public class CardAddingUI : MonoBehaviour
 
         // 카드 배열 재조정 (선택적)
         FanOutCardsUI.Instance.StartArrangeCards();
+        CostManager.instance.UseCost(1);
+        Debug.Log("카드 드로우, 코스트 소비");
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -17,7 +18,8 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private int originalSortingOrder;     // 원래 sorting order 저장
     public GameObject uiPanel;
     GameObject parent;
-
+    [SerializeField] private string des;
+    private Text Des;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -30,6 +32,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         uiPanel = Instantiate(UICon.instance.CardDescription, parent.transform);
         //uiPanel.transform.position = parent.GetComponent<RectTransform>().anchoredPosition;
         uiPanel.SetActive(false);
+        Des = uiPanel.transform.Find("Des").GetComponent<Text>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -38,6 +41,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         canvas.sortingOrder = 100;  // 확대된 카드를 가장 앞으로
         isZooming = true;  // 확대 시작
         uiPanel.SetActive(true);
+        Des.text = des;
         uiPanel.transform.position = parent.GetComponent<RectTransform>().position;
     }
 
@@ -74,8 +78,9 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         isReturning = true;
         //Debug.Log(this.name.Replace("(Clone)", ""));
         CardData a = CardManager.cardManager.GetCardData(this.name);
-        Debug.Log(a.cost);
         a.Effect();
+        CostManager.instance.UseCost(a.cost);
+        Debug.Log($"코스트 지불 : {a.cost} 현재 코스트 : {GameManager.gameManager.currentCost}");
         FanOutCardsUI.Instance.cards.Remove(this.rectTransform);
         this.gameObject.SetActive(false);
         FanOutCardsUI.Instance.StartArrangeCards();

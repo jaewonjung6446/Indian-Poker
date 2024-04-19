@@ -93,6 +93,8 @@ MonoBehaviour:
   returnSpeed: 0.1
   zoomScaleFactor: 1.5
   zoomSpeed: 0.05
+  uiPanel: {fileID: 0}
+  des: "\uBC30\uD305\uC561\uC744 3\uC73C\uB85C \uACE0\uC815\uD569\uB2C8\uB2E4"
 --- !u!225 &4933122911111519411
 CanvasGroup:
   m_ObjectHideFlags: 0

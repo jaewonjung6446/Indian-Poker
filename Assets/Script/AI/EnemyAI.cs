@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    private float winRate;
     private void FixedUpdate()
     {
-        GetPossibility(0);
+        Debug.Log(GetWinPossibility(GameManager.gameManager.stage));
     }
-    private float GetPossibility(int enemyIndex)
+    private float GetWinPossibility(int stage)
     {
-        float a = (EnemyManager.instance.enemies[enemyIndex].maxNum - NumberAssignment.Instance.allynewNumber);
-        float b = (EnemyManager.instance.enemies[enemyIndex].maxNum - EnemyManager.instance.enemies[enemyIndex].minNum);
-        float winRate =a/b;
+        float a = (GameManager.gameManager.players[stage].maxNum - NumberAssignment.Instance.allynewNumber);
+        float b = (GameManager.gameManager.players[stage].maxNum - GameManager.gameManager.players[stage].minNum);
+        if(a > b)
+        {
+            winRate = 1;
+        }
+        else
+        {
+            winRate = a / b;
+        }
         Debug.Log(winRate.ToString());
-        return 0;
+        return winRate;
     }
 }

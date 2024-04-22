@@ -7,12 +7,16 @@ public class Player
     public string playerName;
     public int Hp; // 플레이어의 Hp
     public int bet;
+    public int minNum;
+    public int maxNum;
     public bool iswin = false;
 
-    public Player(string name, int startingHp)
+    public Player(string name, int startingHp,int minNum, int maxNum)
     {
         playerName = name;
         Hp = startingHp;
+        this.minNum = minNum;
+        this.maxNum = maxNum;
     }
 
     // 배팅을 추가하는 메소드

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text betavailableamount;
     [SerializeField] private Text playerbetamount;
     public int currentCost = 3;
+    public int stage = 0;
     private int raiseamount = 3;
     private bool suggestEnd = false;
     private void Awake()
@@ -26,8 +27,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // 플레이어 초기화 예시
-        players.Add(new Player("플레이어", startchip_player));
-        players.Add(new Player("적군", startchip_enemy));
+        players.Add(new Player("플레이어", startchip_player,1,10));
+        Debug.Log("플레이어 생성");
+        for (int i = 0; i < 100; i++)
+        {
+            int minNum = Random.Range(0, 6);
+            int maxNum = Random.Range(minNum, 15);
+            int hp = Random.Range(5, 40);
+            players.Add(new Player("적군"+i.ToString(), hp, minNum, maxNum));
+        }
     }
     private void Update()
     {

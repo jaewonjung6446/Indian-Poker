@@ -13,15 +13,16 @@ public class NumberAssignment : MonoBehaviour
     public int enemyexistingNumber;
     public int allynewNumber=-1;
     public int enemynewNumber=-1;
-    private int stage= 0;
+    //public int stage= 0;
     private List<int> allyavailableNumbers;  // 사용 가능한 숫자 리스트
     private List<int> enemyavailableNumbers;  // 사용 가능한 숫자 리스트
 
     void Start()
     {
         Instance = this;
+        //IntiallizeNum_Ally();
         IntiallizeNum_Ally();
-        InitializeNumbers(0);
+        InitializeNumbers(1);
         AssignNewNumber();
         assignButton.onClick.AddListener(AssignNewNumber);
     }
@@ -30,7 +31,7 @@ public class NumberAssignment : MonoBehaviour
     {
         enemyavailableNumbers = new List<int>();
 
-        for (int i = EnemyManager.instance.enemies[stage].minNum; i <= EnemyManager.instance.enemies[stage].maxNum; i++)
+        for (int i = GameManager.gameManager.players[stage].minNum; i <= GameManager.gameManager.players[stage].maxNum; i++)
         {
             if (i != enemyexistingNumber)  // 기존 숫자 제외
             {
@@ -52,9 +53,9 @@ public class NumberAssignment : MonoBehaviour
 
     void AssignNewNumber()
     {
-        stage++;
-        Debug.Log($"현재 스테이지 = {stage}");
-        InitializeNumbers(stage);
+        GameManager.gameManager.stage++;
+        Debug.Log($"현재 스테이지 = {GameManager.gameManager.stage}");
+        InitializeNumbers(GameManager.gameManager.stage);
         if (allyavailableNumbers.Count > 0)
         {
             int allyindex = Random.Range(0, allyavailableNumbers.Count);

@@ -6,6 +6,8 @@ public class Player
 {
     public string playerName;
     public int Hp; // 플레이어의 Hp
+    public int bet;
+    public bool iswin = false;
 
     public Player(string name, int startingHp)
     {
@@ -34,7 +36,6 @@ public class Player
     {
         Debug.Log(playerName + " folds");
         //this.chips -= GameManager.gameManager.bet;
-        GameManager.gameManager.bet = 10;
-        GameManager.gameManager.currentPot = 0;
+        this.bet = 0;
     }
 }

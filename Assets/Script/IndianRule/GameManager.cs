@@ -9,13 +9,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] int startchip_player = 30;
     [SerializeField] int startchip_enemy = 30;
 
-    private List<Player> players = new List<Player>();
+    public List<Player> players = new List<Player>();
     public int currentPot = 0; // ÇöÀç ÆÌÀÇ ÃÑ¾×
     public int bet = 10; // ¹èÆÃ¾×
-    public Text betamount;
-    public Text playeramount;
-    public Text betavailableamount;
-    public Text playerbetamount;
+    [SerializeField] private Text betamount;
+    [SerializeField] private Text playeramount;
+    [SerializeField] private Text betavailableamount;
+    [SerializeField] private Text playerbetamount;
     public int currentCost = 3;
     private int raiseamount = 3;
     private bool suggestEnd = false;

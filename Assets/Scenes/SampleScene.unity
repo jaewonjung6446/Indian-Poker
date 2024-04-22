@@ -1805,6 +1805,8 @@ MonoBehaviour:
   EnemyNum: {fileID: 1312137184}
   allyexistingNumber: 20
   enemyexistingNumber: 20
+  allynewNumber: -1
+  enemynewNumber: -1
 --- !u!4 &1588858681
 Transform:
   m_ObjectHideFlags: 0
@@ -2251,6 +2253,50 @@ MonoBehaviour:
   - {fileID: 1432753180}
   startPosition: {x: 50, y: 50}
   spacing: 150
+--- !u!1 &1794877375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1794877376}
+  - component: {fileID: 1794877377}
+  m_Layer: 0
+  m_Name: EnemyAI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1794877376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794877375}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 959.8034, y: 711.9916, z: 3.5639129}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1794877377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794877375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e231e3c1fb95394385d29a883542b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1839217163
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,3 +2852,4 @@ SceneRoots:
   - {fileID: 1886298955}
   - {fileID: 1687293568}
   - {fileID: 1722729190}
+  - {fileID: 1794877376}

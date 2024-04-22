@@ -5,19 +5,21 @@ using UnityEngine.UI;
 
 public class NumberAssignment : MonoBehaviour
 {
+    public static NumberAssignment Instance;
     public Button assignButton;  // 숫자 배정 버튼
     public Text EnemyNum;
     //public Text AllyNum;
     public int allyexistingNumber;  // 이미 배정받은 숫자
     public int enemyexistingNumber;
-    int allynewNumber=-1;
-    int enemynewNumber=-1;
+    public int allynewNumber=-1;
+    public int enemynewNumber=-1;
     private int stage= 0;
     private List<int> allyavailableNumbers;  // 사용 가능한 숫자 리스트
     private List<int> enemyavailableNumbers;  // 사용 가능한 숫자 리스트
 
     void Start()
     {
+        Instance = this;
         IntiallizeNum_Ally();
         InitializeNumbers(0);
         AssignNewNumber();

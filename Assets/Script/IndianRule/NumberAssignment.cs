@@ -54,7 +54,7 @@ public class NumberAssignment : MonoBehaviour
     public void AssignNewNumber()
     {
         //GameManager.gameManager.stage++;
-        Debug.Log($"현재 스테이지 = {GameManager.gameManager.stage+1}");
+        Debug.Log($"수 재배치, 현재 스테이지 = {GameManager.gameManager.stage+1}");
         InitializeNumbers(GameManager.gameManager.stage);
         if (allyavailableNumbers.Count > 0)
         {

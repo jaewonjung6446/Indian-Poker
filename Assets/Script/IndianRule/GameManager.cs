@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
     [SerializeField] int startchip_player = 30;
-    [SerializeField] int startchip_enemy = 30;
 
     public List<Player> players = new List<Player>();
     public int currentPot = 0; // 현재 팟의 총액
@@ -56,8 +55,8 @@ public class GameManager : MonoBehaviour
         playeramount.text = "플레이어 재화:" + players[0].Hp.ToString();
         betavailableamount.text = "배팅 액 :" + raiseamount.ToString();
         playerbetamount.text = ($"배팅 액 : {players[0].bet}");
-        enemyHp.text = ($"적 Hp : {players[stage + 1].Hp}");
-        enemyBet.text = ($"적 배팅 : {players[stage + 1].bet}");
+        enemyHp.text = ($"적 Hp : {players[stage].Hp}");
+        enemyBet.text = ($"적 배팅 : {players[stage].bet}");
         //Debug.Log(stage + 1);
         if(players[stage].Hp == 0)
         {
@@ -182,26 +181,27 @@ public class GameManager : MonoBehaviour
             players[0].Hp += this.currentPot;
             players[stage + 1].bet = 0;
             players[0].bet = 0;
-
+            Debug.Log("플레이어에게" + currentPot+"지급");
             this.bet = 3;
             currentPot = 5;
         }else if(NumberAssignment.Instance.allynewNumber < NumberAssignment.Instance.enemynewNumber)
         {
             players[stage+1].Hp += this.currentPot;
             players[stage + 1].bet = 0;
+            Debug.Log($"적{ stage + 1}에게 {currentPot} 지급");
             players[0].bet = 0;
-
             this.bet = 3;
             currentPot = 5;
         }
         else if(NumberAssignment.Instance.allynewNumber == NumberAssignment.Instance.enemynewNumber)
         {
             players[0].Hp += players[0].bet;
+            players[0].bet = 0;
             players[stage+1].Hp += players[stage+1].bet;
             players[stage + 1].bet = 0;
-            players[0].bet = 0;
             this.bet = 3;
             currentPot = 5;
+            Debug.Log($"동률");
         }
         NumberAssignment.Instance.AssignNewNumber();
     }

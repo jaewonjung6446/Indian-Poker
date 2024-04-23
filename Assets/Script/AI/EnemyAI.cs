@@ -5,10 +5,6 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     private float winRate;
-    private void FixedUpdate()
-    {
-        Debug.Log(GetWinPossibility(GameManager.gameManager.stage));
-    }
     private float GetWinPossibility(int stage)
     {
         float a = (GameManager.gameManager.players[stage].maxNum - NumberAssignment.Instance.allynewNumber);

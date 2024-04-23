@@ -24,13 +24,10 @@ public class Player
     {
         if (amount > Hp)
         {
-            Debug.Log("Not enough chips!");
             return false;
         }
         else
         {
-            Hp -= amount;
-            Debug.Log(playerName + " bets " + amount);
             return true;
         }
     }

@@ -51,10 +51,10 @@ public class NumberAssignment : MonoBehaviour
         }
     }
 
-    void AssignNewNumber()
+    public void AssignNewNumber()
     {
-        GameManager.gameManager.stage++;
-        Debug.Log($"현재 스테이지 = {GameManager.gameManager.stage}");
+        //GameManager.gameManager.stage++;
+        Debug.Log($"현재 스테이지 = {GameManager.gameManager.stage+1}");
         InitializeNumbers(GameManager.gameManager.stage);
         if (allyavailableNumbers.Count > 0)
         {

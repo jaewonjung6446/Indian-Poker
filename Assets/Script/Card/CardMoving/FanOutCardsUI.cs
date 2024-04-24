@@ -20,7 +20,7 @@ public class FanOutCardsUI : MonoBehaviour
     {
         for (int i = 0; i < startCardStack; i++) {
             int a = Random.Range(0, CardManager.cardManager.cardPrefabs.Length);
-            GameObject gameObject = GameObject.Instantiate(CardManager.cardManager.cardPrefabs[a],transform);
+            GameObject gameObject = GameObject.Instantiate(CardManager.cardManager.cardPrefabs[a],this.transform);
             cards.Add(gameObject.GetComponent<RectTransform>());
         }
         StartArrangeCards();

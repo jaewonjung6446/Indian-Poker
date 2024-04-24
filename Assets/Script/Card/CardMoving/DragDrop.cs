@@ -16,11 +16,11 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public float zoomScaleFactor = 1.5f;  // 확대 배율
     public float zoomSpeed = 0.05f;       // 확대 속도
     private int originalSortingOrder;     // 원래 sorting order 저장
-    public GameObject uiPanel;
+    private GameObject uiPanel;
     GameObject parent;
     [SerializeField] private string des;
     private Text Des;
-    private void Awake()
+    private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
@@ -29,7 +29,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         targetScale = originalScale;  // 초기 목표 스케일 설정
         originalSortingOrder = canvas.sortingOrder; // 원래 sorting order 저장
         parent = GameObject.Find("Description");
-        uiPanel = Instantiate(UICon.instance.CardDescription, parent.transform);
+        uiPanel = GameObject.Instantiate(UICon.instance.CardDescription, parent.transform);
         //uiPanel.transform.position = parent.GetComponent<RectTransform>().anchoredPosition;
         uiPanel.SetActive(false);
         Des = uiPanel.transform.Find("Des").GetComponent<Text>();

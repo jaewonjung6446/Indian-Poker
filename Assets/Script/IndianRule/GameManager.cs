@@ -57,12 +57,6 @@ public class GameManager : MonoBehaviour
         playerbetamount.text = ($"배팅 액 : {players[0].bet}");
         enemyHp.text = ($"적 Hp : {players[stage].Hp}");
         enemyBet.text = ($"적 배팅 : {players[stage].bet}");
-        //Debug.Log(stage + 1);
-        if(players[stage].Hp == 0)
-        {
-            stage++;
-            Debug.Log("현재 스테이지"+stage);
-        }
     }
     // 플레이어의 배팅을 처리하는 메소드
     public void Call(int playerId)
@@ -98,11 +92,12 @@ public class GameManager : MonoBehaviour
     public void Raise(int playerId)
     {
         Player player = players[playerId];
-        player.bet += raiseamount;
+        player.bet = GetHighestBet()+raiseamount;
+        Debug.Log($"플레이어 인덱스:{playerId}의 bet = {player.bet}");
         if (player.PlaceBet(player.bet))
         {
             UpdatePot(bet);
-            player.Hp -= bet;
+            player.Hp -= player.bet;
         }
         else if(!player.PlaceBet(player.bet))
         {
@@ -128,15 +123,16 @@ public class GameManager : MonoBehaviour
         if(playerId ==0)
         {
             players[0].iswin = false;
-            players[stage+1].iswin = true;
+            players[stage].iswin = true;
         }
-        else if(playerId == stage + 1)
+        else if(playerId == stage)
         {
-            players[stage + 1].iswin = false;
+            players[stage].iswin = false;
             players[0].iswin = true;
         }
         suggestEnd = false;
         EndPhase_Fold();
+        NumberAssignment.Instance.AssignNewNumber();
     }
 
     // 현재 팟을 업데이트하는 메소드
@@ -146,7 +142,7 @@ public class GameManager : MonoBehaviour
     }
 
     // 현재 가장 높은 배팅을 반환하는 메소드
-    private int GetHighestBet()
+    public int GetHighestBet()
     {
         int highestBet = 0;
         foreach (Player p in players)
@@ -167,7 +163,11 @@ public class GameManager : MonoBehaviour
                 a.Hp += currentPot;
             }
         }
-        isPlayerTurn = true;
+        if (isPlayerTurn)
+        {
+            EndPlayerTurn();
+        }
+        this.currentPot = 5;
     }
     private void EndPhase()
     {
@@ -179,29 +179,35 @@ public class GameManager : MonoBehaviour
         if(NumberAssignment.Instance.allynewNumber > NumberAssignment.Instance.enemynewNumber)
         {
             players[0].Hp += this.currentPot;
-            players[stage + 1].bet = 0;
+            players[stage].bet = 0;
             players[0].bet = 0;
             Debug.Log("플레이어에게" + currentPot+"지급");
             this.bet = 3;
-            currentPot = 5;
+            this.currentPot = 5;
         }else if(NumberAssignment.Instance.allynewNumber < NumberAssignment.Instance.enemynewNumber)
         {
-            players[stage+1].Hp += this.currentPot;
-            players[stage + 1].bet = 0;
-            Debug.Log($"적{ stage + 1}에게 {currentPot} 지급");
+            players[stage].Hp += this.currentPot;
+            players[stage].bet = 0;
+            Debug.Log($"적{ stage}에게 {currentPot} 지급");
             players[0].bet = 0;
             this.bet = 3;
-            currentPot = 5;
+            this.currentPot = 5;
         }
         else if(NumberAssignment.Instance.allynewNumber == NumberAssignment.Instance.enemynewNumber)
         {
             players[0].Hp += players[0].bet;
             players[0].bet = 0;
-            players[stage+1].Hp += players[stage+1].bet;
-            players[stage + 1].bet = 0;
+            players[stage].Hp += players[stage].bet;
+            players[stage].bet = 0;
             this.bet = 3;
-            currentPot = 5;
+            this.currentPot = 5;
             Debug.Log($"동률");
+        }
+        if (players[stage].Hp == 0)
+        {
+            GetHighestBet();
+            stage++;
+            Debug.Log("현재 스테이지" + stage);
         }
         NumberAssignment.Instance.AssignNewNumber();
     }
@@ -216,7 +222,7 @@ public class GameManager : MonoBehaviour
         {
             EndAITurn();
         }
-        Call(stage);
+        EnemyAI.enemyAI.Decision();
         EndAITurn();
     }
 

@@ -8,7 +8,6 @@ public class Card_Atk001 : MonoBehaviour, CardData
     public int cost { get; set; } = 1;
     public void Effect()
     {
-        GameManager.gameManager.bet *= 2;
-        Debug.Log("공격, 현재 배팅 가능 액: " + GameManager.gameManager.bet);
+        Debug.Log("공격, 현재 배팅 가능 액: ");
     }
 }

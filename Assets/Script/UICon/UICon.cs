@@ -6,7 +6,7 @@ public class UICon : MonoBehaviour
 {
     public static UICon instance;
     public GameObject CardDescription;
-    private void Awake()
+    private void Start()
     {
         instance = this;
     }

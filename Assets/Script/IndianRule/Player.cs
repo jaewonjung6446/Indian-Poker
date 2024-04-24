@@ -35,7 +35,7 @@ public class Player
     // 배팅을 취소하는 메소드, 칩은 돌려 받지 못함
     public void Fold()
     {
-        Debug.Log(playerName + " folds");
+        //Debug.Log(playerName + " folds");
         //this.chips -= GameManager.gameManager.bet;
         this.bet = 0;
     }

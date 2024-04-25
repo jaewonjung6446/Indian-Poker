@@ -79,7 +79,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         CardData a = CardManager.cardManager.GetCardData(this.name);
         a.Effect();
         CostManager.instance.UseCost(a.cost);
-        Debug.Log($"코스트 지불 : {a.cost} 현재 코스트 : {GameManager.gameManager.currentCost}");
+        Debug.Log($"{a.ID}사용, 코스트 지불 : {a.cost} 현재 코스트 : {GameManager.gameManager.currentCost}");
         FanOutCardsUI.Instance.cards.Remove(this.rectTransform);
         this.gameObject.SetActive(false);
         FanOutCardsUI.Instance.StartArrangeCards();

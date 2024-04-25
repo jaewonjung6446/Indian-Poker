@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text playerbetamount;
     [SerializeField] private Text enemyHp;
     [SerializeField] private Text enemyBet;
-    [SerializeField] private bool isPlayerTurn = true; // 턴 관리를 위한 변수
+    public bool isPlayerTurn = true; // 턴 관리를 위한 변수
     public int currentCost = 3;
     public int stage = 1;
     private int raiseamount = 3;
@@ -227,7 +227,7 @@ public class GameManager : MonoBehaviour
     }
 
     // AI 턴 종료
-    private void EndAITurn()
+    public void EndAITurn()
     {
         isPlayerTurn = true;
     }

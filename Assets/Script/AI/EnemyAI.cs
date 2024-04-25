@@ -29,13 +29,17 @@ public class EnemyAI : MonoBehaviour
         }
         if(winRate < 0)
         {
-            return 0;
+            winRate = 0;
         }
         Debug.Log(winRate.ToString());
         return winRate;
     }
     public  void Decision()
     {
+        if (gameManager.isPlayerTurn)
+        {
+            gameManager.EndAITurn();
+        }
         if (GetWinPossibility(gameManager.stage)<0.3)
         {
             foldChance = 4;

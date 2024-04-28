@@ -16,6 +16,11 @@ public class CardAddingUI : MonoBehaviour
 
     void AddCard()
     {
+        if(GameManager.gameManager.currentCost <= 0)
+        {
+            Debug.Log("코스트 부족");
+            return;
+        }
         int a = Random.Range(0, CardManager.cardManager.cardPrefabs.Length);
         GameObject gameObject = CardManager.cardManager.cardPrefabs[a];
         // 카드 인스턴스 생성
@@ -26,7 +31,8 @@ public class CardAddingUI : MonoBehaviour
 
         // 카드 배열 재조정 (선택적)
         FanOutCardsUI.Instance.StartArrangeCards();
+        //카드 코스트 소비
         CostManager.instance.UseCost(1);
-        Debug.Log("카드 드로우, 코스트 소비");
+        Debug.Log("카드 드로우, 1 코스트 소비");
     }
 }

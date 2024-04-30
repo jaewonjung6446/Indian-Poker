@@ -18,13 +18,7 @@ public class NPCAI : MonoBehaviour
     }
     private void Start()
     {
-        for(int a = 0; a < GenNPCNum; a++)
-        {
-            GameObject NPCPreFab = GameObject.Instantiate(NPC,NPCParent.transform);
-            float i = Random.Range(0, 360);
-            NPCPreFab.transform.position = new Vector3(10 * Mathf.Sin(i) + 10,5.5f, 10 * Mathf.Cos(i) -10);
-            NPCs.Add(NPCPreFab.GetComponent<Collider>());
-        }
+        GenNPCs();
     }
 
     public void WithDraw()
@@ -47,8 +41,19 @@ public class NPCAI : MonoBehaviour
             {
                 min = (NPCs[a].transform.position - burstedCoin.transform.position).magnitude;
                 withDrawNPC = NPCs[a].gameObject;
-                Debug.Log(a);
             }
         }
+        Debug.Log(min);
+    }
+    private void GenNPCs()
+    {
+        for (int a = 0; a < GenNPCNum; a++)
+        {
+            GameObject NPCPreFab = GameObject.Instantiate(NPC, NPCParent.transform);
+            float i = Random.Range(0, 360);
+            NPCPreFab.transform.position = new Vector3(10 * Mathf.Sin(i) + 10, 5.5f, 10 * Mathf.Cos(i) - 10);
+            NPCs.Add(NPCPreFab.GetComponent<Collider>());
+        }
+
     }
 }
